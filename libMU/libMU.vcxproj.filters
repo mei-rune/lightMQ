@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\mu">
+      <UniqueIdentifier>{b553a1d7-cd0d-4a4f-9056-e92ceb595c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\mu\win32">
+      <UniqueIdentifier>{cfaec863-aabc-4495-ad23-7c5447bcf948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\win32">
+      <UniqueIdentifier>{0c85ac89-b0ff-401e-97f4-b9dbf5de4650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\json">
+      <UniqueIdentifier>{e30abcf3-9112-46f1-a388-f6f98454bbf8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="src\Makefile">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="src\json\json.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+    <None Include="src\json\json_array.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+    <None Include="src\json\json_common.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+    <None Include="src\json\json_mapping.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+    <None Include="src\json\json_number.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+    <None Include="src\json\json_string.rl">
+      <Filter>源文件\json</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\mu\array.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\url.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\hashtable.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\itostr.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\json_tokener.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\link.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\object.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_atomic.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_dirent.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_dlfcn.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_getopt.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_sem.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_threads.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\os_time.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\platform.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\rollingfile.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\string_buffer.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\target.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\unittest.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\win32\dirent.h">
+      <Filter>头文件\mu\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\win32\dlfcn.h">
+      <Filter>头文件\mu\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\win32\getopt.h">
+      <Filter>头文件\mu\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\win32\pthread_windows.h">
+      <Filter>头文件\mu\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\win32\time.h">
+      <Filter>头文件\mu\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\internal.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\object_private.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\win32\getopt_int.h">
+      <Filter>源文件\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="src\json\json_private.h">
+      <Filter>源文件\json</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\atomic.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hashtable.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\itostr.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json_tokener.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_array.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_format.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_new.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_string.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_table.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_to.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\object_utils.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rollingfile.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\string_buffer.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\target.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unittest.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\url.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\dirent.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\dlfcn.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\getopt.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\getopt1.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\gettimeofday.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\pthread_windows.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\sem.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json.c">
+      <Filter>源文件\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_array.c">
+      <Filter>源文件\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_mapping.c">
+      <Filter>源文件\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_number.c">
+      <Filter>源文件\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\json\json_string.c">
+      <Filter>源文件\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

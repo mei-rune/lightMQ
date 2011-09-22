@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C03C9005-518D-4D2D-86F0-68BBB7235EA0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libMU</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MU_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBMU_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="src\json\json.rl" />
+    <None Include="src\json\json_array.rl" />
+    <None Include="src\json\json_common.rl" />
+    <None Include="src\json\json_mapping.rl" />
+    <None Include="src\json\json_number.rl" />
+    <None Include="src\json\json_string.rl" />
+    <None Include="src\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\mu\array.h" />
+    <ClInclude Include="include\mu\hashtable.h" />
+    <ClInclude Include="include\mu\itostr.h" />
+    <ClInclude Include="include\mu\json_tokener.h" />
+    <ClInclude Include="include\mu\link.h" />
+    <ClInclude Include="include\mu\object.h" />
+    <ClInclude Include="include\mu\os_atomic.h" />
+    <ClInclude Include="include\mu\os_dirent.h" />
+    <ClInclude Include="include\mu\os_dlfcn.h" />
+    <ClInclude Include="include\mu\os_getopt.h" />
+    <ClInclude Include="include\mu\os_sem.h" />
+    <ClInclude Include="include\mu\os_threads.h" />
+    <ClInclude Include="include\mu\os_time.h" />
+    <ClInclude Include="include\mu\platform.h" />
+    <ClInclude Include="include\mu\rollingfile.h" />
+    <ClInclude Include="include\mu\string_buffer.h" />
+    <ClInclude Include="include\mu\target.h" />
+    <ClInclude Include="include\mu\unittest.h" />
+    <ClInclude Include="include\mu\url.h" />
+    <ClInclude Include="include\mu\win32\dirent.h" />
+    <ClInclude Include="include\mu\win32\dlfcn.h" />
+    <ClInclude Include="include\mu\win32\getopt.h" />
+    <ClInclude Include="include\mu\win32\pthread_windows.h" />
+    <ClInclude Include="include\mu\win32\time.h" />
+    <ClInclude Include="src\internal.h" />
+    <ClInclude Include="src\json\json_private.h" />
+    <ClInclude Include="src\object_private.h" />
+    <ClInclude Include="src\win32\getopt_int.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\atomic.c" />
+    <ClCompile Include="src\hashtable.c" />
+    <ClCompile Include="src\itostr.c" />
+    <ClCompile Include="src\json\json.c" />
+    <ClCompile Include="src\json\json_array.c" />
+    <ClCompile Include="src\json\json_mapping.c" />
+    <ClCompile Include="src\json\json_number.c" />
+    <ClCompile Include="src\json\json_string.c" />
+    <ClCompile Include="src\json_tokener.c" />
+    <ClCompile Include="src\object.c" />
+    <ClCompile Include="src\object_array.c" />
+    <ClCompile Include="src\object_format.c" />
+    <ClCompile Include="src\object_new.c" />
+    <ClCompile Include="src\object_string.c" />
+    <ClCompile Include="src\object_table.c" />
+    <ClCompile Include="src\object_to.c" />
+    <ClCompile Include="src\object_utils.c" />
+    <ClCompile Include="src\rollingfile.c" />
+    <ClCompile Include="src\string_buffer.c" />
+    <ClCompile Include="src\target.c" />
+    <ClCompile Include="src\unittest.c" />
+    <ClCompile Include="src\url.c" />
+    <ClCompile Include="src\utils.c" />
+    <ClCompile Include="src\win32\dirent.c" />
+    <ClCompile Include="src\win32\dlfcn.c" />
+    <ClCompile Include="src\win32\getopt.c" />
+    <ClCompile Include="src\win32\getopt1.c" />
+    <ClCompile Include="src\win32\gettimeofday.c" />
+    <ClCompile Include="src\win32\pthread_windows.c" />
+    <ClCompile Include="src\win32\sem.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
