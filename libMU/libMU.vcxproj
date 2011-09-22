@@ -93,6 +93,7 @@
     <ClInclude Include="include\mu\itostr.h" />
     <ClInclude Include="include\mu\json_tokener.h" />
     <ClInclude Include="include\mu\link.h" />
+    <ClInclude Include="include\mu\networking.h" />
     <ClInclude Include="include\mu\object.h" />
     <ClInclude Include="include\mu\os_atomic.h" />
     <ClInclude Include="include\mu\os_dirent.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="src\json\json_number.c" />
     <ClCompile Include="src\json\json_string.c" />
     <ClCompile Include="src\json_tokener.c" />
+    <ClCompile Include="src\networking.c" />
     <ClCompile Include="src\object.c" />
     <ClCompile Include="src\object_array.c" />
     <ClCompile Include="src\object_format.c" />
@@ -146,6 +148,7 @@
     <ClCompile Include="src\win32\getopt.c" />
     <ClCompile Include="src\win32\getopt1.c" />
     <ClCompile Include="src\win32\gettimeofday.c" />
+    <ClCompile Include="src\win32\iputilities.c" />
     <ClCompile Include="src\win32\pthread_windows.c" />
     <ClCompile Include="src\win32\sem.c" />
   </ItemGroup>

@@ -51,6 +51,8 @@ DLL_VARIABLE void string_buffer_destroy(string_buffer_t* pcs);
 
 #define  string_assign(s, v) (s)->len = (v)->len; (s)->str = (v)->str
 
+#define string_truncate(s, l) (s)->len = (l);
+
 
 DLL_VARIABLE void string_swap(string_t* lhs, string_t* rhs);
 

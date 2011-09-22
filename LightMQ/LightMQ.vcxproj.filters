@@ -19,11 +19,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="lightMQ.conf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ev\ev.h">
       <Filter>ev</Filter>
     </ClInclude>
@@ -38,10 +36,10 @@
     <ClCompile Include="ev\ev.c">
       <Filter>ev</Filter>
     </ClCompile>
-    <ClCompile Include="LightMQ.c">
+    <ClCompile Include="console.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="server.c">
+    <ClCompile Include="lightMQ.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

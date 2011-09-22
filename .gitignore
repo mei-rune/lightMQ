@@ -1,0 +1,8 @@
+*.user
+*.o
+*.a
+*.lib
+*.pdb
+*.obj
+Debug
+Release

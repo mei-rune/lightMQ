@@ -60,6 +60,9 @@
       <AdditionalDependencies>Ws2_32.lib;libMU.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(ProjectDir)*.conf  $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -83,18 +86,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="lightMQ.conf" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="ev\ev.h" />
     <ClInclude Include="lightMQ.h" />
-    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ev\ev.c" />
-    <ClCompile Include="LightMQ.c" />
-    <ClCompile Include="server.c" />
+    <ClCompile Include="lightMQ.c" />
+    <ClCompile Include="console.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

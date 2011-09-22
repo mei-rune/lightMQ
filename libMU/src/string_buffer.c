@@ -266,6 +266,166 @@ DLL_VARIABLE string_buffer_t* string_buffer_append_from_file(string_buffer_t* pc
 	return (-1 == num)?NULL:pcs;
 }
 
+DLL_VARIABLE string_buffer_t* string_buffer_insertLen(string_buffer_t*       pcs
+						  ,   int                     index
+						  ,   char const*             s
+						  ,   size_t                  len
+							 )
+{
+	size_t  realIndex;
+
+	if (0 >= len)
+		return pcs;
+
+	cstring_assert(NULL != pcs);
+
+	if (index < 0)
+	{
+		if (-index > (int)pcs->len)
+		{
+			errno = EINVAL;
+			return 0;
+		}
+		realIndex = pcs->len - (size_t)(-index);
+	}
+	else
+	{
+		realIndex = (size_t)index;
+		if (realIndex > pcs->len)
+		{
+			errno = EINVAL;
+			return 0;
+		}
+	}
+
+
+	if (len > pcs->capacity - pcs->len)
+		string_ensureLen_(pcs, pcs->len + len);
+
+	/* copy over the rhs of the std::string */
+	memmove(pcs->str + realIndex + len, pcs->str + realIndex, (pcs->len - realIndex) * sizeof(char));
+	pcs->len += len;
+	memcpy(pcs->str + realIndex, s, sizeof(char) * len);
+	pcs->str[pcs->len] = '\0';
+	return pcs;
+}
+
+DLL_VARIABLE string_buffer_t* string_buffer_insert(string_buffer_t*       pcs
+					  ,   int                     index
+					  ,   char const*             s
+					  )
+{
+	const size_t cch = string_strlen_safe_(s);
+	return string_buffer_insertLen(pcs, index, s, cch);
+}
+
+DLL_VARIABLE int string_replace(string_buffer_t*       pcs
+						,   int                     index
+						,   size_t                  len
+						,   char const*             s
+						)
+{
+	const size_t cch = string_strlen_safe_(s);
+	return string_replaceLen(pcs, index, len, s, cch);
+}
+
+DLL_VARIABLE int string_replaceLen(string_buffer_t*       pcs
+						   ,   int                     index
+						   ,   size_t                  len
+						   ,   char const*             s
+						   ,   size_t                  cch
+							  )
+{
+	size_t  realIndex;
+
+	cstring_assert(NULL != pcs);
+
+	if (index < 0)
+	{
+		if (-index > (int)pcs->len)
+		{
+			errno = EINVAL;
+			return -1;
+		}
+		realIndex = pcs->len - (size_t)(-index);
+	}
+	else
+	{
+		realIndex = (size_t)index;
+		if (realIndex + len > pcs->len)
+		{
+			errno = EINVAL;
+			return -1;
+		}
+	}
+
+
+	if (cch > len)
+		string_ensureLen_(pcs, pcs->len + (cch - len));
+
+	if (len != cch)
+	{
+		/* copy over the rhs of the std::string */
+		const size_t n = pcs->len - (realIndex + len);
+
+		memmove(pcs->str + realIndex + cch, pcs->str + realIndex + len, n * sizeof(char));
+
+		if (cch > len)
+			pcs->len += (cch - len);
+		else
+			pcs->len -= (len - cch);
+
+		pcs->str[pcs->len] = '\0';
+	}
+
+	/* we can simply replace directly */
+	memcpy(pcs->str + realIndex, s, sizeof(char) * cch);
+
+	return 0;
+}
+
+DLL_VARIABLE int string_replaceAll(string_buffer_t*       pcs
+							  ,   char const*             f
+							  ,   char const*             t
+							  ,   size_t*                 numReplaced /* = NULL */ )
+{
+	size_t  numReplaced_;
+
+	cstring_assert(NULL != pcs);
+
+	if (NULL == numReplaced)
+		numReplaced = &numReplaced_;
+
+	*numReplaced = 0;
+
+	if (NULL == f ||
+		'\0' == f[0])
+		return 0;
+
+	if (0 == pcs->len)
+		return 0;
+	{
+		/* Search for first, then replace, then repeat from search pos */
+		const size_t  flen  =   strlen(f);
+		const size_t  tlen  =   string_strlen_safe_(t);
+		size_t        pos   =   0;
+		char*         p;
+
+		for (; NULL != (p = strstr(pcs->str + pos, f)); pos += tlen)
+		{
+			int rc;
+
+			pos = (size_t)(p - pcs->str);
+
+			rc = string_replaceLen(pcs, (int)pos, flen, t, tlen);
+
+			if (0 != rc)
+				return rc;
+		}
+	}
+	return 0;
+}
+
 #ifdef __cplusplus
 }
 #endif

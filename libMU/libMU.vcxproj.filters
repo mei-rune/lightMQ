@@ -135,6 +135,9 @@
     <ClInclude Include="src\json\json_private.h">
       <Filter>源文件\json</Filter>
     </ClInclude>
+    <ClInclude Include="include\mu\networking.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\atomic.c">
@@ -226,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="src\json\json_string.c">
       <Filter>源文件\json</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win32\iputilities.c">
+      <Filter>源文件\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="src\networking.c">
+      <Filter>源文件\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
