@@ -76,25 +76,9 @@ extern "C" {
 
 #define ASSERT_TRUE(cond)      CHECK(cond)
 #define ASSERT_FALSE(cond)     CHECK(!(cond))
-#define ASSERT_STREQ(a, b)    CHECK(strcmp(a, b) == 0)
+#define ASSERT_STREQ(a, b)    CHECK((a == b) || ( a !=0 && b !=0 && strcmp(a, b) == 0))
 
 #define CHECK_ERR(invocation)  PCHECK((invocation) != -1)
-
-#ifdef NDEBUG
-#define DCHECK_EQ(val1, val2)
-#define DCHECK_NE(val1, val2)
-#define DCHECK_LE(val1, val2)
-#define DCHECK_LT(val1, val2)
-#define DCHECK_GE(val1, val2)
-#define DCHECK_GT(val1, val2)
-#else
-#define DCHECK_EQ(val1, val2)  CHECK_EQ(val1, val2)
-#define DCHECK_NE(val1, val2)  CHECK_NE(val1, val2)
-#define DCHECK_LE(val1, val2)  CHECK_LE(val1, val2)
-#define DCHECK_LT(val1, val2)  CHECK_LT(val1, val2)
-#define DCHECK_GE(val1, val2)  CHECK_GE(val1, val2)
-#define DCHECK_GT(val1, val2)  CHECK_GT(val1, val2)
-#endif
 
 
 #define LOG_VPRINTF(fmt, argList) do {                                \
@@ -176,19 +160,19 @@ extern "C" {
 
 
 
-typedef void (*out_fn_t)(const char* buf, size_t len);
+typedef void (__cdecl *out_fn_t)(const char* buf, size_t len);
 
 #define UNITTEST_TO_STR(x) #x
 
 #define TEST(a, b)                                                    \
-void test_##a##_##b##_run(out_fn_t out_fn);                           \
+void __cdecl test_##a##_##b##_run(out_fn_t out_fn);                   \
 int test_##a##_##b##_var = ADD_RUN_TEST(UNITTEST_TO_STR(a##_##b)      \
                  , &test_##a##_##b##_run);	                          \
-void test_##a##_##b##_run(out_fn_t out_fn)
+void __cdecl test_##a##_##b##_run(out_fn_t out_fn)
 
 
-DLL_VARIABLE int ADD_RUN_TEST(const char* nm, void (*func)(out_fn_t fn));
-DLL_VARIABLE int RUN_ALL_TESTS(void (*out_fn)(const char* buf, size_t len));
+DLL_VARIABLE int ADD_RUN_TEST(const char* nm, void (__cdecl *func)(out_fn_t fn));
+DLL_VARIABLE int RUN_ALL_TESTS(out_fn_t out);
 
 
 #ifdef __cplusplus

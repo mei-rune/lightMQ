@@ -16,10 +16,22 @@
     <Filter Include="ev">
       <UniqueIdentifier>{74f000a5-59c3-421f-bf95-b870fa82c978}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{1cc511ec-1765-4410-84e9-509bce0f5a10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
     <None Include="lightMQ.conf" />
+    <None Include="clientFsm.rl">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="serverFsm.rl">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="stomp.rl">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ev\ev.h">
@@ -29,6 +41,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="lightMQ.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stomp.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,6 +56,18 @@
     </ClCompile>
     <ClCompile Include="lightMQ.c">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clientfsm.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="serverfsm.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stompProtocol.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="serverFsmTest.cpp">
+      <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

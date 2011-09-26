@@ -179,6 +179,17 @@ DLL_VARIABLE size_t object_length(object_t *obj)
     return (*(object_fn[obj->o_type].length))(obj);
 }
 
+DLL_VARIABLE void object_clear(object_t *obj) {
+	
+	if(0 == obj)
+		return ;
+
+    if(0 == object_fn[obj->o_type].clear)
+    	return ;
+
+    (*(object_fn[obj->o_type].clear))(obj);
+}
+
 DLL_VARIABLE boolean object_put_object(object_t* obj
 							, const char *key
 							, object_t *val)

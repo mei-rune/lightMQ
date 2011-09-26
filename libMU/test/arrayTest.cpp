@@ -1,10 +1,7 @@
 
-
-
-
-#include "platform.h"
-#include "array.h"
-#include "unittest.h"
+#include "mu/platform.h"
+#include "mu/array.h"
+#include "mu/unittest.h"
 
 
 typedef struct intArray_s

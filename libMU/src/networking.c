@@ -23,7 +23,7 @@ int os_inet_pton(int af,  const char *src,  void *dst);
 
 
 
-boolean set_nonblocking(SOCKET sock)
+DLL_VARIABLE boolean set_nonblocking(SOCKET sock)
 {
 #ifdef _WIN32
     u_long nonblock = 1;
@@ -39,10 +39,9 @@ boolean set_nonblocking(SOCKET sock)
 #endif 
 }
 
-boolean  initialize_network()
+DLL_VARIABLE boolean  initialize_network()
 {
 #ifdef _WIN32
-	SOCKET cliSock;
     DWORD dwBytes = 0;
 
     WSADATA wsaData;
@@ -60,14 +59,14 @@ boolean  initialize_network()
     return true;
 }
 
-void shutdown_network()
+DLL_VARIABLE void shutdown_network()
 {
 #ifdef _WIN32
     WSACleanup();
 #endif
 }
 
-boolean string_to_address(const char* url
+DLL_VARIABLE boolean string_to_address(const char* url
                      , struct sockaddr* addr)
 {
 	char host[50];
@@ -116,7 +115,7 @@ boolean string_to_address(const char* url
 	}
 }
 
-boolean address_to_string(struct sockaddr* addr
+DLL_VARIABLE boolean address_to_string(struct sockaddr* addr
                      , const char* schema
                      , size_t schema_len
                      , string_buffer_t* url)
@@ -147,16 +146,48 @@ boolean address_to_string(struct sockaddr* addr
 		ptr = os_inet_ntop(addr->sa_family,  &(((struct sockaddr_in*)addr)->sin_addr), string_data(url) + len, IP_ADDRESS_LEN);
 	if(0 == ptr)
 	{
-		string_buffer_truncate(url, 0);
+		string_truncate(url, 0);
 		return false;
 	}
-	string_buffer_truncate(url, len + strlen(ptr));
+	string_truncate(url, len + strlen(ptr));
 
 	string_buffer_append_sprintf(url, ":%d", 
 			ntohs((AF_INET6 == addr->sa_family)?((struct sockaddr_in6*)addr)->sin6_port
 			:((struct sockaddr_in*)addr)->sin_port));
 	
 	return true;
+}
+
+
+DLL_VARIABLE socket_type listen_at(const char* url){
+	
+    SOCKADDR_STORAGE addr;
+    socket_type fd;
+	
+	fd = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+	if(INVALID_SOCKET == fd)
+		return fd;
+
+    if(!set_nonblocking(fd)) {
+		closesocket(fd);
+		return INVALID_SOCKET;
+	}
+
+    if(!string_to_address(url,(struct sockaddr*) &addr)){
+		closesocket(fd);
+		return INVALID_SOCKET;
+	}
+
+    if(SOCKET_ERROR == bind(fd,(struct sockaddr*)&addr, sizeof(addr))) {
+		closesocket(fd);
+		return INVALID_SOCKET;
+	}
+
+    if(SOCKET_ERROR == listen(fd,SOMAXCONN)){
+		closesocket(fd);
+		return INVALID_SOCKET;
+	}
+    return fd;
 }
 
 #ifdef __cplusplus

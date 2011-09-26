@@ -319,17 +319,7 @@ DLL_VARIABLE string_buffer_t* string_buffer_insert(string_buffer_t*       pcs
 	return string_buffer_insertLen(pcs, index, s, cch);
 }
 
-DLL_VARIABLE int string_replace(string_buffer_t*       pcs
-						,   int                     index
-						,   size_t                  len
-						,   char const*             s
-						)
-{
-	const size_t cch = string_strlen_safe_(s);
-	return string_replaceLen(pcs, index, len, s, cch);
-}
-
-DLL_VARIABLE int string_replaceLen(string_buffer_t*       pcs
+DLL_VARIABLE int string_buffer_replaceLen(string_buffer_t*       pcs
 						   ,   int                     index
 						   ,   size_t                  len
 						   ,   char const*             s
@@ -384,7 +374,17 @@ DLL_VARIABLE int string_replaceLen(string_buffer_t*       pcs
 	return 0;
 }
 
-DLL_VARIABLE int string_replaceAll(string_buffer_t*       pcs
+DLL_VARIABLE int string_buffer_replace(string_buffer_t*       pcs
+						,   int                     index
+						,   size_t                  len
+						,   char const*             s
+						)
+{
+	const size_t cch = string_strlen_safe_(s);
+	return string_buffer_replaceLen(pcs, index, len, s, cch);
+}
+
+DLL_VARIABLE int string_buffer_replaceAll(string_buffer_t*       pcs
 							  ,   char const*             f
 							  ,   char const*             t
 							  ,   size_t*                 numReplaced /* = NULL */ )
@@ -417,7 +417,7 @@ DLL_VARIABLE int string_replaceAll(string_buffer_t*       pcs
 
 			pos = (size_t)(p - pcs->str);
 
-			rc = string_replaceLen(pcs, (int)pos, flen, t, tlen);
+			rc = string_buffer_replaceLen(pcs, (int)pos, flen, t, tlen);
 
 			if (0 != rc)
 				return rc;

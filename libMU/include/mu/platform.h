@@ -13,6 +13,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <Mswsock.h>
+#include <Ws2tcpip.h>
 
 
 #ifndef __MINGW32__

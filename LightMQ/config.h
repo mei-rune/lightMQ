@@ -14,4 +14,8 @@
 #include <winsock2.h>
 #endif
 
+# define EV_FD_TO_WIN32_HANDLE(fd) (SOCKET)fd
+# define EV_WIN32_HANDLE_TO_FD(handle) (int)(handle)
+# define EV_WIN32_CLOSE_FD(fd) closesocket (fd)
+
 #endif // _config_h_

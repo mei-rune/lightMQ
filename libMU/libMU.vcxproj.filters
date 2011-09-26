@@ -25,6 +25,9 @@
     <Filter Include="源文件\json">
       <UniqueIdentifier>{e30abcf3-9112-46f1-a388-f6f98454bbf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{f557c508-3890-4c02-9fd2-a469eab513ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -138,6 +141,12 @@
     <ClInclude Include="include\mu\networking.h">
       <Filter>头文件\mu</Filter>
     </ClInclude>
+    <ClInclude Include="include\mu\last_error.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mu\log.h">
+      <Filter>头文件\mu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\atomic.c">
@@ -234,7 +243,16 @@
       <Filter>源文件\win32</Filter>
     </ClCompile>
     <ClCompile Include="src\networking.c">
-      <Filter>源文件\win32</Filter>
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test\objectTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\arrayTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\jsonTest.cpp">
+      <Filter>test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

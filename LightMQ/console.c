@@ -7,6 +7,8 @@
 #endif
 
 #include "mu/platform.h"
+#include "mu/networking.h"
+#include "mu/unittest.h"
 #include "mu/os_getopt.h"
 #include "mu/json_tokener.h"
 #include "lightMQ.h"
@@ -108,11 +110,22 @@ void usage(int argc, char* args[])
 	printf("  -h, -?, --help\t\tdisplay this help and exit\r\n");
 }
 
+void out(const char* buf, size_t len)
+{
+	printf(buf);
+}
+
 int main(int argc, char* argv[]) {
 
 	int longIndex;
 	int opt;
 	object_t* config;
+
+
+	
+	RUN_ALL_TESTS(&out);
+	RUN_ALL_TESTS(&out);
+
 	
 	memset(workDirectory, 0, sizeof(workDirectory));
 	memset(configFile, 0, sizeof(configFile));
@@ -166,6 +179,7 @@ int main(int argc, char* argv[]) {
 	}
 	object_put_string(config, "configFile", configFile);
 
+	initialize_network();
 	run_server(config);
 
 	object_destroy(config);

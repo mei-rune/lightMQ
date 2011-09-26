@@ -1,5 +1,5 @@
-#include "object.h"
-#include "unittest.h"
+#include "mu/object.h"
+#include "mu/unittest.h"
 
 TEST(object, simple)
 {
@@ -9,8 +9,8 @@ TEST(object, simple)
  object_t* minusInfinity = object_new_MinusInfinity();
  object_t* positiveInfinity = object_new_PositiveInfinity();
 
- object_t* botrue = object_new_boolean(MU_TRUE);
- object_t* bofalse = object_new_boolean(MU_FALSE);
+ object_t* botrue = object_new_boolean(true);
+ object_t* bofalse = object_new_boolean(false);
  object_t* oi = object_new_int(-4);
  object_t* oui = object_new_uint(4);
  object_t* od = object_new_double(0.9);
@@ -56,7 +56,7 @@ TEST(object, array_push_pop)
 
     object_t* ar = object_new_array();
     ASSERT_EQ(0, object_length(ar));
-    object_element_push_boolean(ar,  MU_TRUE);
+    object_element_push_boolean(ar,  true);
     object_element_push_int(ar,  -23);
     object_element_push_uint(ar,  23);
     object_element_push_double(ar,  2.34);
@@ -68,7 +68,7 @@ TEST(object, array_push_pop)
     ASSERT_EQ(8, object_length(ar));
 
     ASSERT_EQ(object_type_boolean, object_get_type(object_element_at(ar, 0)));
-    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 1)));
     ASSERT_TRUE(-23 == object_to_int(object_element_at(ar, 1), -1));
@@ -96,7 +96,7 @@ TEST(object, array_push_pop)
 
     obj = object_element_pop(ar);
     ASSERT_EQ(object_type_boolean, object_get_type(obj));
-    ASSERT_TRUE(object_to_boolean(obj, MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(obj, true));
     object_destroy(obj);
 
 
@@ -146,11 +146,9 @@ TEST(object, array_push_pop)
 
 TEST(object, array_set_and_del)
 {
-    object_t* obj;
-
     object_t* ar = object_new_array();
     ASSERT_EQ(0, object_length(ar));
-    object_element_set_boolean(ar,   0, MU_TRUE);
+    object_element_set_boolean(ar,   0, true);
     object_element_set_int(ar,       1, -23);
     object_element_set_uint(ar,      2, 23);
     object_element_set_double(ar,    3, 23.34);
@@ -162,13 +160,13 @@ TEST(object, array_set_and_del)
     ASSERT_EQ(8, object_length(ar));
 
     ASSERT_EQ(object_type_boolean, object_get_type(object_element_at(ar, 0)));
-    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 1)));
-    ASSERT_TRUE(-23 == object_to_int(object_element_at(ar, 1), MU_FALSE));
+    ASSERT_TRUE(-23 == object_to_int(object_element_at(ar, 1), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 2)));
-    ASSERT_TRUE(23 == object_to_uint(object_element_at(ar, 2), MU_FALSE));
+    ASSERT_TRUE(23 == object_to_uint(object_element_at(ar, 2), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 3)));
     //ASSERT_TRUE(23.34 == object_to_double(object_element_at(ar, 3)));
@@ -192,7 +190,7 @@ TEST(object, array_set_and_del)
     ASSERT_EQ(7, object_length(ar));
 
     ASSERT_EQ(object_type_boolean, object_get_type(object_element_at(ar, 0)));
-    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 1)));
     ASSERT_TRUE(23 == object_to_uint(object_element_at(ar, 1), 0));
@@ -213,8 +211,6 @@ TEST(object, array_set_and_del)
 
 TEST(object, array_set_and_del2)
 {
-    object_t* obj;
-
     object_t* ar = object_new_array();
     ASSERT_EQ(0, object_length(ar));
     object_element_set_stringN(ar,   7, 'a' , 10);
@@ -234,12 +230,12 @@ TEST(object, array_set_and_del2)
     object_element_set_double(ar,    3, 2.34);
     object_element_set_uint(ar,      2, 23);
     object_element_set_int(ar,       1, -23);
-    object_element_set_boolean(ar,   0, MU_TRUE);
+    object_element_set_boolean(ar,   0, true);
 
     ASSERT_EQ(8, object_length(ar));
 
     ASSERT_EQ(object_type_boolean, object_get_type(object_element_at(ar, 0)));
-    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 1)));
     ASSERT_TRUE(-23 == object_to_int(object_element_at(ar, 1), 0));
@@ -269,7 +265,7 @@ TEST(object, array_set_and_del2)
     ASSERT_EQ(7, object_length(ar));
 
     ASSERT_EQ(object_type_boolean, object_get_type(object_element_at(ar, 0)));
-    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), MU_FALSE));
+    ASSERT_TRUE(object_to_boolean(object_element_at(ar, 0), true));
 
     ASSERT_EQ(object_type_number, object_get_type(object_element_at(ar, 1)));
     ASSERT_TRUE(23 == object_to_uint(object_element_at(ar, 1), 0));
@@ -295,7 +291,7 @@ TEST(object, dict_put_and_get)
 
     object_t* ar = object_new_table();
     ASSERT_EQ(0, object_length(ar));
-    object_put_boolean(ar,   "a0", MU_TRUE);
+    object_put_boolean(ar,   "a0", true);
     object_put_int(ar,       "a1", -23);
     object_put_uint(ar,      "a2", 23);
     object_put_double(ar,    "a3", 2.34);
@@ -308,7 +304,7 @@ TEST(object, dict_put_and_get)
 
     obj = object_get_object(ar, "a0");
     ASSERT_EQ(object_type_boolean, object_get_type(obj));
-    ASSERT_TRUE(object_get_boolean(ar, "a0", MU_FALSE));
+    ASSERT_TRUE(object_get_boolean(ar, "a0", true));
 
 
     obj = object_get_object(ar, "a1");
@@ -448,7 +444,7 @@ TEST(object, dict_element)
 
     object_t* ar = object_new_table();
     ASSERT_EQ(0, object_length(ar));
-    object_put_boolean(ar,   "a0", MU_TRUE);
+    object_put_boolean(ar,   "a0", true);
     object_put_int(ar,       "a1", -23);
     object_put_uint(ar,      "a2", 23);
     object_put_double(ar,    "a3", 2.34);
@@ -470,7 +466,7 @@ TEST(object, dict_element)
             obj = object_element_at(obj, 1);
 
             ASSERT_EQ(object_type_boolean, object_get_type(obj));
-            ASSERT_TRUE(object_to_boolean(obj, MU_FALSE));
+            ASSERT_TRUE(object_to_boolean(obj, true));
         }
         else if(0 == strcmp("a1",  object_element_at_string(obj, 0, 0, 0).str))
         {
@@ -561,7 +557,7 @@ TEST(object, dict_element)
             obj = object_get_object(obj, "value");
 
             ASSERT_EQ(object_type_boolean, object_get_type(obj));
-            ASSERT_TRUE(object_to_boolean(obj, MU_FALSE));
+            ASSERT_TRUE(object_to_boolean(obj, true));
         }
         else if(0 == strcmp("a1", object_get_string(obj, "key", 0, 0).str))
         {
@@ -618,7 +614,7 @@ TEST(object, dict_element)
         }
         else
         {
-            CHECK_MESSAGE(MU_FALSE,"AAAA");
+            CHECK_MESSAGE(true,"AAAA");
         }
     }
 

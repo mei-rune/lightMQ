@@ -9,13 +9,13 @@ extern "C" {
 typedef struct _TestCase{
 	char* name;
 	struct _TestCase* _next;
-	void (*func)(out_fn_t fn);
+	void (__cdecl *func)(out_fn_t fn);
 } TestCase;
 
 TestCase g_unittestlist = {0, 0 };
 size_t name_max_len = 0;
 
-DLL_VARIABLE int ADD_RUN_TEST(const char* nm, void (*func)(out_fn_t fn))
+DLL_VARIABLE int ADD_RUN_TEST(const char* nm, void (__cdecl *func)(out_fn_t fn))
 {
 	TestCase* tc = (TestCase*)my_malloc(sizeof(TestCase));
 	tc->name = my_strdup(nm);
@@ -34,24 +34,24 @@ void output(out_fn_t out_fn, const char* fmt, ...)
 	va_end( argList );
 }
 
-DLL_VARIABLE int RUN_ALL_TESTS(void (*out_fn)(const char* buf, size_t len))
+DLL_VARIABLE int RUN_ALL_TESTS(out_fn_t out)
 {
 	char fmt[512];
 	TestCase* next;
 	snprintf(fmt, 512, "[%%%us] OK\r\n", name_max_len);
 
-	output(out_fn, "=============== unit test ===============\r\n");
+	output(out, "=============== unit test ===============\r\n");
 	next = g_unittestlist._next;
 	while(0 != next)
 	{
 		//TestCase* old = next;
-		(*(next->func))(out_fn);
-		output(out_fn, fmt, next->name);
+		(*(next->func))(out);
+		output(out, fmt, next->name);
 		next = next->_next;
 		//my_free(old);
 	}
 
-	output(out_fn, "=============== end ===============\r\n");
+	output(out, "=============== end ===============\r\n");
     return 0;
 }
 

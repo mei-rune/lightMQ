@@ -149,9 +149,9 @@ DLL_VARIABLE object_t* object_new_string_zerocopy(char *s, size_t len)
 	return obj;
 }
 
-DLL_VARIABLE object_t* object_new_zerocopy(string_t str)
+DLL_VARIABLE object_t* object_new_zerocopy(const string_t* str)
 {
-	return object_new_string_zerocopy(string_data(&str), string_length(&str));
+	return object_new_string_zerocopy(string_data(str), string_length(str));
 }
 
 DLL_VARIABLE object_t* object_new_stringLen(const char *s, size_t len)

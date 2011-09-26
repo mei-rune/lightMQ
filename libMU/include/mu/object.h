@@ -64,8 +64,8 @@ DLL_VARIABLE void object_format(object_t* obj, format_fn_t cb, void* ctxt);
  */
 DLL_VARIABLE object_t* object_new_NaN();
 DLL_VARIABLE object_t* object_new_Nil();;
-DLL_VARIABLE object_t*  object_new_MinusInfinity();
-DLL_VARIABLE object_t*  object_new_PositiveInfinity();
+DLL_VARIABLE object_t* object_new_MinusInfinity();
+DLL_VARIABLE object_t* object_new_PositiveInfinity();
 DLL_VARIABLE object_t* object_new_table(void);
 DLL_VARIABLE object_t* object_new_array(void);
 DLL_VARIABLE object_t* object_new_boolean(boolean b);
@@ -76,7 +76,7 @@ DLL_VARIABLE object_t* object_new_string(const char *s);
 DLL_VARIABLE object_t* object_new_stringLen(const char *s, size_t len);
 DLL_VARIABLE object_t* object_new_stringN(char c, size_t n);
 DLL_VARIABLE object_t* object_new_string_zerocopy(char *s, size_t len);
-DLL_VARIABLE object_t* object_new_zerocopy(string_t str);
+DLL_VARIABLE object_t* object_new_zerocopy(const string_t* str);
 /**
  * 删除对象
  */
@@ -124,7 +124,7 @@ DLL_VARIABLE boolean object_put_string(object_t *obj, const char *key, const cha
 DLL_VARIABLE boolean object_put_stringLen(object_t *obj, const char *key, const char* val, size_t len);
 DLL_VARIABLE boolean object_put_stringN(object_t *obj, const char *key, char val, size_t n);
 DLL_VARIABLE boolean object_put_string_zerocopy(object_t *obj, const char *key, char* val, size_t len);
-DLL_VARIABLE boolean object_put_zerocopy(object_t *obj, const char *key, string_t val);
+DLL_VARIABLE boolean object_put_zerocopy(object_t *obj, const char *key, const string_t* val);
 
 /** @} */
 
@@ -194,7 +194,7 @@ DLL_VARIABLE boolean object_element_push_string(object_t *obj, const char* val);
 DLL_VARIABLE boolean object_element_push_stringLen(object_t *obj, const char* val, size_t len);
 DLL_VARIABLE boolean object_element_push_stringN(object_t *obj, char val, size_t n);
 DLL_VARIABLE boolean object_element_push_string_zerocopy(object_t *obj, char* val, size_t len);
-DLL_VARIABLE boolean object_element_push_zerocopy(object_t *obj, string_t val);
+DLL_VARIABLE boolean object_element_push_zerocopy(object_t *obj, const string_t* val);
 
 
 /** @} */
@@ -242,7 +242,7 @@ DLL_VARIABLE boolean  object_element_set_string(object_t *obj, size_t idx, const
 DLL_VARIABLE boolean  object_element_set_stringLen(object_t *obj, size_t idx, const char* str, size_t len);
 DLL_VARIABLE boolean  object_element_set_stringN(object_t *obj, size_t idx, char c, size_t n);
 DLL_VARIABLE boolean  object_element_set_string_zerocopy(object_t *obj, size_t idx, char* str, size_t len);
-DLL_VARIABLE boolean  object_element_set_zerocopy(object_t *obj, size_t idx, string_t str);
+DLL_VARIABLE boolean  object_element_set_zerocopy(object_t *obj, size_t idx, const string_t* str);
 
 /** @} */
 

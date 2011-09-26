@@ -11,25 +11,6 @@
 extern "C" {
 #endif
 
-
-
-#if defined(_WIN32)
-int gettimeofday(struct timeval* tv)
-{
-   union {
-      long long ns100;
-      FILETIME ft;
-   } now;
- 
-   GetSystemTimeAsFileTime (&now.ft);
-   tv->tv_usec = (long) ((now.ns100 / 10LL) % 1000000LL);
-   tv->tv_sec = (long) ((now.ns100 - 116444736000000000LL) / 10000000LL);
-  return (0);
-}
-#endif
-
-
-
 #define NS_INT16SZ      2
 #define NS_INADDRSZ     4
 #define NS_IN6ADDRSZ    16

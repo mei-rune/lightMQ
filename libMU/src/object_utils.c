@@ -62,7 +62,7 @@ DLL_VARIABLE boolean object_put_string_zerocopy(object_t *obj, const char *key, 
 	return object_put_object(obj, key, object_new_string_zerocopy(val, len));
 }
 
-DLL_VARIABLE boolean object_put_zerocopy(object_t *obj, const char *key, string_t val)
+DLL_VARIABLE boolean object_put_zerocopy(object_t *obj, const char *key, const string_t* val)
 {
 	ENSURE(obj, object_type_table, false);
 
@@ -151,7 +151,7 @@ DLL_VARIABLE boolean object_element_push_string_zerocopy(object_t *obj, char* va
 	return object_element_push(obj, object_new_string_zerocopy(val, len));
 }
 
-DLL_VARIABLE boolean object_element_push_zerocopy(object_t *obj, string_t val)
+DLL_VARIABLE boolean object_element_push_zerocopy(object_t *obj, const string_t* val)
 {
 	ENSURE(obj, object_type_array, false);
 
@@ -278,7 +278,7 @@ DLL_VARIABLE boolean  object_element_set_string_zerocopy(object_t *obj, size_t i
 	ENSURE(obj, object_type_array, false);
 	return object_element_set(obj, idx, object_new_string_zerocopy(str, len));
 }
-DLL_VARIABLE boolean  object_element_set_zerocopy(object_t *obj, size_t idx, string_t str)
+DLL_VARIABLE boolean  object_element_set_zerocopy(object_t *obj, size_t idx, const string_t* str)
 {
 	ENSURE(obj, object_type_array, false);
 	return object_element_set(obj, idx, object_new_zerocopy(str));
