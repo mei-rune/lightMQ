@@ -10,30 +10,13 @@
 #include "mu/networking.h"
 #include "ev/ev.h"
 #include "lightMQ.h"
+#include "stomp.h"
+#include "internal.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct light_mq_s {
-	object_t* config;
-	struct ev_loop* loop;
-	socket_type listen_fd;
-	ev_io listen_io;
-	boolean is_running;
-};
-
-
-typedef struct light_mq_client_s {
-	socket_type fd;
-	struct sockaddr_storage remote_addr;
-    socklen_t remote_addr_len;
-
-	
-	struct ev_loop* loop;
-	ev_io write_io;
-	ev_io read_io;
-} light_mq_client_t;
 
 void run_server(object_t* config) {
 	light_mq_t* mq = light_mq_create(config);
@@ -47,6 +30,9 @@ static void client_close(light_mq_client_t *cli){
 	ev_io_stop(cli->loop, &cli->write_io);
 	ev_io_stop(cli->loop, &cli->read_io);
  	closesocket(cli->fd);
+	
+	stomp_client_finish(&cli->stomp);
+
 	my_free(cli);
 }
 
@@ -72,8 +58,10 @@ static void read_cb(struct ev_loop *loop, struct ev_io *w, int revents) {
 		return;
 	}
 
-	buf[len] = 0;
-	printf(buf);
+	if(-1 == stomp_client_execute(&cli->stomp, buf, len, 0)){
+		client_close(cli);
+		return;
+	}
 }
 
 static void accept_cb(struct ev_loop *loop, struct ev_io *w, int revents) {
@@ -94,6 +82,9 @@ static void accept_cb(struct ev_loop *loop, struct ev_io *w, int revents) {
 		goto error;
 	}
 	cli->loop = loop;
+	
+	stomp_client_init(&cli->stomp);
+	
 	ev_io_init(&cli->read_io,read_cb,cli->fd,EV_READ);
 	ev_io_init(&cli->write_io,write_cb,cli->fd,EV_WRITE);
 

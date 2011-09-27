@@ -9,6 +9,28 @@
 extern "C" {
 #endif
 
+	
+DLL_VARIABLE int _cmp_string(const void *key1, size_t len1, const void *key2, size_t len2)
+{
+	if(len1 == len2)
+		return memcmp(key1, key2, len1);
+	else if(len1 > len2)
+		return 1;
+	else 
+		return -1;
+}
+
+DLL_VARIABLE size_t _hash_string(const char *vkey, size_t len)
+{
+	size_t hash = 5381;
+	size_t i;
+	const char *key = (char *) vkey;
+
+	for (i = 0; i < len; i++)
+		hash = ((hash << 5) + hash) + key[i]; /* hash * 33 + char */
+
+	return hash;
+}
 
 void _object_hashtable_resize(object_hashtable_t* hash);
 
@@ -84,7 +106,7 @@ static boolean _object_hashtable_put(object_hashtable_t* hash, const char* key, 
 
 	/* 检测是否已存在 */
 	el = root_el;
-	while (el && _hashtable_str_cmp(GETKEY_STR(el)
+	while (el && _cmp_string(GETKEY_STR(el)
 		, GETKEY_LEN(el)
 		, key, key_len))
 	{
@@ -171,7 +193,7 @@ static boolean object_hashtable_del(object_hashtable_t* hash, const char* key, s
 
 	/* 检测是否已存在 */
 	el = root_el;
-	while (el && _hashtable_str_cmp(GETKEY_STR(el)
+	while (el && _cmp_string(GETKEY_STR(el)
 		, GETKEY_LEN(el)
 		, key, key_len))
 	{
@@ -223,7 +245,7 @@ static object_t* object_hashtable_get(const object_hashtable_t* hash, const char
 {
 	object_t* el = hash->entries[_hash_string(key, key_len) % hash->capacity];
 	while (el) {
-		if (_hashtable_str_cmp(GETKEY_STR(el)
+		if (_cmp_string(GETKEY_STR(el)
 		, GETKEY_LEN(el), key, key_len) == 0)
 			return GETVALUE(el);
 

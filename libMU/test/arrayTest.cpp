@@ -24,7 +24,7 @@ TEST(ARRAY, func)
 {
   intArray_t ar;
 
-  ARRAY_INIT(int, &ar, 2, &int_free);
+  ARRAY_INIT(int, &ar, 2);
 
   ARRAY_PUT(int, &ar, 0, 1);
   ARRAY_PUT(int, &ar, 1, 2);

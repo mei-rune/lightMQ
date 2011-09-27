@@ -164,6 +164,8 @@ typedef void (__cdecl *out_fn_t)(const char* buf, size_t len);
 
 #define UNITTEST_TO_STR(x) #x
 
+#ifdef _DEBUG
+
 #define TEST(a, b)                                                    \
 void __cdecl test_##a##_##b##_run(out_fn_t out_fn);                   \
 int test_##a##_##b##_var = ADD_RUN_TEST(UNITTEST_TO_STR(a##_##b)      \
@@ -173,7 +175,13 @@ void __cdecl test_##a##_##b##_run(out_fn_t out_fn)
 
 DLL_VARIABLE int ADD_RUN_TEST(const char* nm, void (__cdecl *func)(out_fn_t fn));
 DLL_VARIABLE int RUN_ALL_TESTS(out_fn_t out);
+#else
 
+#define TEST(a, b)  void __cdecl test_##a##_##b##_run(out_fn_t out_fn)
+#define ADD_RUN_TEST(nm, func)
+#define RUN_ALL_TESTS(out)
+
+#endif
 
 #ifdef __cplusplus
 }

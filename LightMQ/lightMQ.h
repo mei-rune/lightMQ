@@ -17,7 +17,13 @@ void light_mq_destroy(light_mq_t* mq);
 
 void run_server(object_t* config);
 
+typedef struct light_msg_s {
+	string_t command;
+	object_t* headers;
+	string_t body;
 
+
+} light_msg_t;
 
 #ifdef __cplusplus
 }

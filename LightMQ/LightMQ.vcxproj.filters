@@ -46,6 +46,12 @@
     <ClInclude Include="stomp.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="commonFsmTest.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="internal.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ev\ev.c">
@@ -66,8 +72,14 @@
     <ClCompile Include="stompProtocol.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="clientFsmTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
     <ClCompile Include="serverFsmTest.cpp">
       <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="io_thread.c">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

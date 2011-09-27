@@ -94,14 +94,18 @@
     <None Include="stomp.rl" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="commonFsmTest.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="ev\ev.h" />
+    <ClInclude Include="internal.h" />
     <ClInclude Include="lightMQ.h" />
     <ClInclude Include="stomp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="clientfsm.c" />
+    <ClCompile Include="clientFsmTest.cpp" />
     <ClCompile Include="ev\ev.c" />
+    <ClCompile Include="io_thread.c" />
     <ClCompile Include="lightMQ.c" />
     <ClCompile Include="console.c" />
     <ClCompile Include="serverfsm.c" />

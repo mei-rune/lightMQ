@@ -88,7 +88,7 @@ typedef int boolean;
 #endif
 
 #define my_malloc   malloc
-#define my_free     free
+#define my_free(x)    if(NULL != x) free(x)
 #define my_realloc  realloc
 #define my_calloc   calloc
 #define my_strdup   strdup

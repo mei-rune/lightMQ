@@ -6,6 +6,8 @@ extern "C"
 {
 #endif
 
+#define cmd_protocolError stomp_server_cmd_protocolError
+
 %%{
 	machine stomp_server_fsm;
     include stomp_fsm "stomp.rl";
@@ -28,22 +30,19 @@ void stomp_server_init(stomp_t *stomp) {
 	%% write init;
 }
 
-void stomp_server_execute(stomp_t *stomp, const char *data, int len, int isEof) {
+int stomp_server_execute(stomp_t *stomp, const char *data, int len, int isEof) {
 	const char *p = data;
 	const char *pe = data + len;
 	const char *eof = isEof ? pe : 0;
 
 	%% write exec;
+	return 0;
+failure:
+    return -1;
 }
 
-int stomp_server_finish(stomp_t *stomp) {
-	if ( stomp->cs == stomp_server_fsm_error ) {
-		return -1;
-	}
-	if ( stomp->cs >= stomp_server_fsm_first_final ) {
-		return 1;
-	}
-	return 0;
+void stomp_server_finish(stomp_t *stomp) {
+	STOMP_DESTROY(stomp);
 }
 
 #ifdef __cplusplus

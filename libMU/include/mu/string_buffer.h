@@ -41,6 +41,8 @@ typedef struct string_buffer_s
 
 #define  string_buffer_init(s) (s)->str = 0; (s)->len = 0; (s)->capacity = 0
 
+#define string_destroy(s) my_free((s)->str); (s)->str = 0; (s)->len = 0
+
 DLL_VARIABLE void string_buffer_destroy(string_buffer_t* pcs);
 
 #define  string_data(s) (s)->str

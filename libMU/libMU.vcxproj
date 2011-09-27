@@ -156,6 +156,7 @@
     <ClCompile Include="src\win32\pthread_windows.c" />
     <ClCompile Include="src\win32\sem.c" />
     <ClCompile Include="test\arrayTest.cpp" />
+    <ClCompile Include="test\hashtableTest.cpp" />
     <ClCompile Include="test\jsonTest.cpp" />
     <ClCompile Include="test\objectTest.cpp" />
   </ItemGroup>
